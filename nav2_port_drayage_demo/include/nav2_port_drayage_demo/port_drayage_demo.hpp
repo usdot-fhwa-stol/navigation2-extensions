@@ -15,13 +15,15 @@
 #ifndef NAV2_PORT_DRAYAGE_DEMO__PORT_DRAYAGE_DEMO_HPP_
 #define NAV2_PORT_DRAYAGE_DEMO__PORT_DRAYAGE_DEMO_HPP_
 
+#include <std_srvs/srv/trigger.hpp>
 #include <carma_v2x_msgs/msg/mobility_operation.hpp>
 #include <geometry_msgs/msg/pose_with_covariance_stamped.hpp>
 #include <action_msgs/msg/goal_status_array.hpp>
 #include <action_msgs/msg/goal_status.hpp>
 #include <unique_identifier_msgs/msg/uuid.hpp>
 #include <memory>
-#include <nav2_msgs/action/follow_waypoints.hpp>
+#include <nav2_msgs/action/compute_and_track_route.hpp>
+#include <nav2_msgs/action/follow_path.hpp>
 #include <nav2_util/lifecycle_node.hpp>
 #include <nlohmann/json.hpp>
 #include <rclcpp_action/rclcpp_action.hpp>
@@ -140,11 +142,35 @@ public:
   auto on_mobility_operation_received(const carma_v2x_msgs::msg::MobilityOperation & msg) -> void;
 
   /**
+   * \brief Service handler to send an ack when the truck enters the port
+   * \param request Empty message to trigger service
+   * \param response String response
+   */
+  void handle_entrance_trigger(const std::shared_ptr<std_srvs::srv::Trigger::Request> request,
+                      std::shared_ptr<std_srvs::srv::Trigger::Response> response);
+
+  /**
+   * \brief Callback triggered after generating a route, to send the route to a controller
+   * \param feedback The route and path from ComputeAndTrackRoute
+   */
+  auto route_feedback_callback(
+    const rclcpp_action::ClientGoalHandle<nav2_msgs::action::ComputeAndTrackRoute>::SharedPtr,
+    const std::shared_ptr<const nav2_msgs::action::ComputeAndTrackRoute::Feedback> feedback) -> void;
+
+  /**
    * \brief Callback triggered after a port drayage action is completed to publish an ack
    * \param result The result of the action
    */
-  auto on_result_received(
-    const rclcpp_action::ClientGoalHandle<nav2_msgs::action::FollowWaypoints>::WrappedResult &
+  auto route_result_callback(
+    const rclcpp_action::ClientGoalHandle<nav2_msgs::action::ComputeAndTrackRoute>::WrappedResult &
+      result) -> void;
+  
+  /**
+   * \brief Callback triggered after a port drayage action is completed to publish an ack
+   * \param result The result of the action
+   */
+  auto follow_path_result_callback(
+    const rclcpp_action::ClientGoalHandle<nav2_msgs::action::FollowPath>::WrappedResult &
       result) -> void;
 
   /**
@@ -207,8 +233,10 @@ private:
   ////
   // Action Client
   ////
-  rclcpp_action::Client<nav2_msgs::action::FollowWaypoints>::SharedPtr follow_waypoints_client_{
-    nullptr};
+  rclcpp_action::Client<nav2_msgs::action::ComputeAndTrackRoute>::SharedPtr route_client_{nullptr};
+  rclcpp_action::Client<nav2_msgs::action::FollowPath>::SharedPtr follow_path_client_{nullptr};
+  nav_msgs::msg::Path computed_path_;
+  rclcpp::Service<std_srvs::srv::Trigger>::SharedPtr service_;
 
   // Current odometry
   geometry_msgs::msg::PoseWithCovarianceStamped current_odometry_;
