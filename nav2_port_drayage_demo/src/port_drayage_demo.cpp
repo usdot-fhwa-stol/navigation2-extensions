@@ -182,7 +182,6 @@ void PortDrayageDemo::handle_entrance_trigger(const std::shared_ptr<std_srvs::sr
 
   carma_v2x_msgs::msg::MobilityOperation ack = compose_arrival_message();
   mobility_operation_publisher_->publish(std::move(ack));
-  actively_executing_operation_ = false;
 
   response->success = true;
   response->message = "Trigger action was successful";
@@ -200,11 +199,9 @@ void PortDrayageDemo::route_result_callback(const rclcpp_action::ClientGoalHandl
     }
     case rclcpp_action::ResultCode::ABORTED:
       RCLCPP_ERROR(get_logger(), "Goal aborted");
-      actively_executing_operation_ = false;
       return;
     case rclcpp_action::ResultCode::CANCELED:
       RCLCPP_ERROR(get_logger(), "Goal canceled");
-      actively_executing_operation_ = false;
       return;
     default:
       RCLCPP_ERROR(get_logger(), "An unknown error occurred");
