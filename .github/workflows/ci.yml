@@ -26,7 +26,7 @@ jobs:
     - name: Clone Dep's
       run: |
         git clone https://github.com/usdot-fhwa-stol/carma-msgs
-        git clone -b route-server-develop https://github.com/usdot-fhwa-stol/navigation2
+        git clone -b nav2_route_tool https://github.com/usdot-fhwa-stol/navigation2
         git clone https://github.com/usdot-fhwa-stol/carma-utils
       working-directory: /__w/navigation2-extensions/navigation2-extensions/src
          
