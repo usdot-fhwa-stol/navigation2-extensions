@@ -1,9 +1,5 @@
 name: Docker build
 on:
-  push:
-   branches:
-    - develop
-    - fix_ci_builds
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:

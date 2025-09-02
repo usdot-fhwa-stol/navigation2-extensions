@@ -7,7 +7,6 @@ on:
     branches: 
       - develop
       - master
-      - fix_ci_builds
       - "release/*"
 
 jobs:
