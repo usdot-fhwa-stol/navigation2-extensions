@@ -1,20 +1,52 @@
 # Navigation 2 (Nav2) Extensions
 
-navigation2_extensions is a new repository that integrates Cooperative Driving Automation (CDA) functionality with the open-source Navigation2 (Nav2) ADS platform. Along with the core components of Nav2, this repository also relies on the “nav2_route” package for defining road networks used by the ADS. This release targets automated port drayage where a semi-truck communicates with an infrastructure computer within a port to coordinate the pickup and drop-off of cargo. Additionally, an emergency stop feature has been added to stop the vehicle via remote input if necessary. 
+## Introduction
+
+The `navigation2_extensions` repository integrates Cooperative Driving Automation (CDA) functionality with the open source Navigation 2 Automated Driving System platform. Along with the core components of Navigation 2, this repository relies on the `nav2_route` package for defining road networks used by the vehicle.
+
+This release targets automated port drayage where a semi truck communicates with an infrastructure computer within a port to coordinate the pickup and drop off of cargo. Additionally, an emergency stop feature has been added to stop the vehicle via remote input if necessary.
+
+If you are new to these concepts, please review the [Key Terms](https://t3.chat/chat/28e1572d-0d00-4856-b695-66bdfaa548cc#key-terms) section at the bottom of this document.
+
+## Prerequisites and Setup
+
+Because this repository contains custom extensions, it must be downloaded and built within your primary workspace alongside the core Navigation 2 packages.
+
+1. Clone this repository into the source directory of your workspace.
+2. Download the navigation2 [nav_route_server](https://github.com/usdot-fhwa-stol/navigation2/tree/nav2_route_server) branch and build `nav2_route` package, as this extension relies heavily on it for routing along defined road networks.
+3. Build your workspace and source the setup file to ensure your system recognizes the new plugins and nodes.
+
+## Related Repositories:
+
+The plugins and features in this repository are not typically launched on their own. Instead, they are loaded automatically by the Navigation 2 system when specified in your configuration files.
+
+To use these extensions, ensure your parameters are pointing to the custom plugins provided in this package, and launch the vehicle using the standard commands found in the [`cda1tenth_bringup`](https://github.com/usdot-fhwa-stol/cda1tenth-bringup/tree/develop) repository. Instructions for building a physical can be found at [`cda1tenth_hardware`](https://github.com/usdot-fhwa-stol/cda1tenth-hardware/tree/develop).
+
+## Key Terms
+
+- **Automated Driving System:** The hardware and software collectively capable of performing the entire dynamic driving task on a sustained basis.
+- **Cooperative Driving Automation:** Research focused on how automated vehicles can communicate with each other and infrastructure to improve safety and traffic flow.
+- **Docker:** A platform that uses containerization to package software and its dependencies together so it runs reliably across different computing environments. [Learn more about Docker here](https://www.docker.com/).
+- **Port Drayage:** The transport of goods over a short distance, typically moving shipping containers between a port and a nearby logistical facility.
 
 ## Contribution
-Welcome to the CARMA contributing guide. Please read this guide to learn about our development process, how to propose pull requests and improvements, and how to build and test your changes to this project. [CARMA Contributing Guide](https://github.com/usdot-fhwa-stol/carma-platform/blob/develop/Contributing.md) 
 
-## Code of Conduct 
-Please read our [CARMA Code of Conduct](https://github.com/usdot-fhwa-stol/carma-platform/blob/develop/Code_of_Conduct.md) which outlines our expectations for participants within the CARMA community, as well as steps to reporting unacceptable behavior. We are committed to providing a welcoming and inspiring community for all and expect our code of conduct to be honored. Anyone who violates this code of conduct may be banned from the community.
+Please read our [CARMA Contributing Guide](https://github.com/usdot-fhwa-stol/carma-platform/blob/develop/Contributing.md) to learn about our development process, how to propose pull requests and improvements, and how to build and test your changes to this project.
+
+## Code of Conduct
+
+Please read our [CARMA Code of Conduct](https://github.com/usdot-fhwa-stol/carma-platform/blob/develop/Code_of_Conduct.md) which outlines our expectations for participants within the CARMA community, as well as steps to reporting unacceptable behavior. We are committed to providing a welcoming and inspiring community for all and expect our code of conduct to be honored. Anyone who violates this code of conduct may be banned from the community.
 
 ## Attribution
-The development team would like to acknowledge the people who have made direct contributions to the design and code in this repository. [CARMA Attribution](https://github.com/usdot-fhwa-stol/carma-platform/blob/develop/ATTRIBUTION.txt) 
+
+The development team would like to acknowledge the people who have made direct contributions to the design and code in this repository. [CARMA Attribution](https://github.com/usdot-fhwa-stol/carma-platform/blob/develop/ATTRIBUTION.txt)
 
 ## License
-By contributing to the Federal Highway Administration (FHWA) Connected Automated Research Mobility Applications (CARMA), you agree that your contributions will be licensed under its Apache License 2.0 license. [CARMA License](https://github.com/usdot-fhwa-stol/carma-platform/blob/develop/docs/License.md) 
+
+By contributing to the Federal Highway Administration (FHWA) Connected Automated Research Mobility Applications (CARMA), you agree that your contributions will be licensed under its Apache License 2.0 license. [CARMA License](https://github.com/usdot-fhwa-stol/carma-platform/blob/develop/docs/License.md)
 
 ## Contact
-Please click on the CARMA logo below to visit the Federal Highway Adminstration(FHWA) CARMA website. For technical support from the CARMA team, please contact the CARMA help desk at CAVSupportServices@dot.gov.
 
-[![CARMA Image](https://raw.githubusercontent.com/usdot-fhwa-stol/carma-platform/develop/docs/image/CARMA_icon.png)](https://highways.dot.gov/research/research-programs/operations/CARMA)
+Please click on the CARMA logo below to visit the Federal Highway Administration (FHWA) CARMA website. For technical support from the CARMA team, please contact the CARMA help desk at [CAVSupportServices@dot.gov](mailto:CAVSupportServices@dot.gov).
+
+[](https://highways.dot.gov/research/research-programs/operations/CARMA)
