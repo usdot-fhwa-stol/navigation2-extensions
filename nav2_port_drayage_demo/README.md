@@ -64,24 +64,20 @@ strategy_params: '{\"cmv_id\":\"turtlebot\",\"operation\":\"PICKUP\",\"cargo\":f
 
 ## Simulation Launch Instructions
 
-To run the demonstration using the virtual vehicle in the Gazebo simulator, follow these steps.
+Assuming you have installed and setup the cda1tenth-brinup repo the below commands will launch it.
 
-1. **Install Prerequisites:** Follow the setup instructions in the `cda1tenth_bringup` repository to download and build the necessary software. Then, install the required simulator packages:
+```bash
+chmod +x launch.sh
 
-```
-sudo apt install ros-humble-turtlebot3*
-```
+# This should auto-detect your env settings
+./launch.sh
 
-1. **Launch the Simulator:** Open a terminal and start the virtual world:
+# But you can manually change the gpu mode
+./launch.sh --gpu
+./launch.sh --no-gpu
 
-```
-ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
-```
-
-1. **Launch the Vehicle Software:** Open a second terminal and start the bringup package:
-
-```
-ros2 launch cda1tenth_bringup cda1tenth_bringup_launch.xml vehicle:=turtlebot
+# And to change launch params, Ex:
+VEHICLE=tortoisebot RECORD_BAG=true ./launch.sh
 ```
 
 1. **Set the Initial Location:** Open the RViz visualizer and provide the vehicle with an initial location estimate using the 2D Pose Estimate tool. Wait for the vehicle sensor data to appear on the screen.
