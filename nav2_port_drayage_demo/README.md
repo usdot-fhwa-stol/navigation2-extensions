@@ -2,18 +2,18 @@
 
 ## Introduction
 
-This package integrates port drayage operations with a Navigation 2 autonomy stack. The software node listens for incoming port drayage messages, calculates a route, and sends the target path to the vehicle controller via an action call.
+This package integrates port drayage operations with a Nav2 system. The software node listens for incoming port drayage messages, calculates a route, and sends the target path to the vehicle controller via an action call.
 
 If you are new to these concepts, please review the [Key Terms](#key-terms) section at the bottom of this document.
 
 ## How It Works
 
-Based on the underlying source code, the node operates through a continuous communication and execution loop.
+The node operates through a continuous communication and execution loop.
 
 1. **Receive Instruction:** It listens for incoming instructions on the mobility operation topic.
-2. **Validate:** It verifies the message is intended for the specific vehicle by checking the configured commercial vehicle identification parameter. It will ignore messages intended for other vehicles.
-3. **Plan:** It extracts the destination coordinates from the message payload and requests a route to the destination from the Navigation 2 system.
-4. **Execute:** Once a path is generated, it sends the path to the Navigation 2 controller using a follow path action. This moves the physical or simulated vehicle.
+2. **Validate:** It verifies the message is intended for the specific vehicle by checking the configured commercial vehicle identification parameter.
+3. **Plan:** It extracts the destination coordinates from the message payload and requests a route to the destination from the Nav2 stack.
+4. **Execute:** Once a path is generated, it sends the path to the Nav2 controller using a follow path action. This moves the physical or simulated vehicle.
 5. **Confirm:** When the vehicle successfully reaches the destination, the node publishes an outgoing mobility operation message to confirm arrival and update its cargo status.
 
 ## Configuration
