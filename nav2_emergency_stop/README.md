@@ -2,9 +2,9 @@
 
 ## Introduction
 
-This package provides a node that acts as a remote hardware kill switch for the Navigation 2 system. It allows an operator to safely stop the physical vehicle and shut down the active navigation software using a remote controller.
+This packages provides a node that allows an operator to safely stop the physical vehicle and shut down the active navigation software using a remote controller.
 
-If you are new to these concepts, please review the [Key Terms](https://t3.chat/chat/28e1572d-0d00-4856-b695-66bdfaa548cc#key-terms) section at the bottom of this document.
+If you are new to these concepts, please review the [Key Terms](#key-terms) section at the bottom of this document.
 
 ## How It Works
 
@@ -24,4 +24,3 @@ This node requires a parameter named `node_names` to function correctly. This 
 
 - **Ackermann Steering:** A steering geometry used in cars where the front wheels turn to steer.
 - **Lifecycle Node:** A specialized software node that can be managed through different states such as active, inactive, or shut down. This allows the system to start up and tear down processes in a controlled order rather than crashing unexpectedly.
-- **Topic:** A named channel where nodes can send or receive data streams, such as controller inputs or movement commands.

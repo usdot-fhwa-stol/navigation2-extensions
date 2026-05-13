@@ -4,7 +4,7 @@
 
 This package integrates port drayage operations with a Navigation 2 autonomy stack. The software node listens for incoming port drayage messages, calculates a route, and sends the target path to the vehicle controller via an action call.
 
-If you are new to these concepts, please review the [Key Terms](https://t3.chat/chat/28e1572d-0d00-4856-b695-66bdfaa548cc#key-terms) section at the bottom of this document.
+If you are new to these concepts, please review the [Key Terms](#key-terms) section at the bottom of this document.
 
 ## How It Works
 
@@ -29,9 +29,7 @@ The node listens for instructions using the `carma_v2x_msgs/msg/MobilityOperati
 
 The strategy field must always be set to `carma/port_drayage`. The strategy parameters field must be set to a JSON string with the following format:
 
-json
-
-```
+```json
 {
   "cmv_id": "DOT-80550",
   "operation": "ENTERING_STAGING_AREA",
@@ -64,7 +62,7 @@ strategy_params: '{\"cmv_id\":\"turtlebot\",\"operation\":\"PICKUP\",\"cargo\":f
 
 ## Simulation Launch Instructions
 
-Assuming you have installed and setup the cda1tenth-brinup repo the below commands will launch it.
+Assuming you have installed and setup the cda1tenth-brinup repository the below commands will launch it.
 
 ```bash
 chmod +x launch.sh
@@ -75,20 +73,19 @@ chmod +x launch.sh
 # But you can manually change the gpu mode
 ./launch.sh --gpu
 ./launch.sh --no-gpu
-
-# And to change launch params, Ex:
-VEHICLE=tortoisebot RECORD_BAG=true ./launch.sh
 ```
 
 1. **Set the Initial Location:** Open the RViz visualizer and provide the vehicle with an initial location estimate using the 2D Pose Estimate tool. Wait for the vehicle sensor data to appear on the screen.
 2. **Run the Demonstration Script:** Open a third terminal and execute the test script to start the scenario:
 
 ```
-cd nav2_port_drayage_demo/
+docker exec -it cda_ws-cda1tenth-1 bash
+cd ..
+cd nav2_ext_ws/nav2_port_drayage_demo/
 ./test/turtlebot_port_drayage_test.sh
 ```
 
-This script publishes a series of messages that instruct the vehicle to navigate to the top of the map to pick up cargo and then navigate to the bottom of the map to drop it off. After each successful operation, the vehicle will publish an outgoing message acknowledging that it completed the desired action.
+This script publishes a series of messages on ```/incoming_mobility_operation``` that instruct the vehicle to navigate to the top of the map to pick up cargo and then navigate to the bottom of the map to drop it off. After each successful operation, the vehicle will publish an outgoing message acknowledging on ```/outgoing_mobility_operation``` that it completed the desired action.
 
 ## Key Terms
 

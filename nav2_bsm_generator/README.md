@@ -2,9 +2,9 @@
 
 ## Introduction
 
-This package provides a specialized node for creating and broadcasting Basic Safety Messages. It collects internal vehicle data like position, velocity, and orientation, and formats it into a standardized message. This allows the vehicle to communicate its status to other connected vehicles and infrastructure in the Cooperative Driving Automation system.
+This package provides a specialized node for creating and broadcasting Basic Safety Messages to connected vehicles and instructure in the CDA system. It collects various vehicle data topics in the CARMA System like position, velocity, and orientation, and formats it into a standardized message. The node is based off of the [bsm_generator](https://github.com/usdot-fhwa-stol/carma-platform/tree/develop/bsm_generator) node implementation in CARMA Platform.
 
-If you are new to these concepts, please review the [Key Terms](https://t3.chat/chat/28e1572d-0d00-4856-b695-66bdfaa548cc#key-terms) section at the bottom of this document.
+If you are new to these concepts, please review the [Key Terms](#key-terms) section at the bottom of this document.
 
 ## How It Works
 
@@ -25,9 +25,10 @@ You can customize the behavior of the generator using several parameters.
 
 ## Key Terms
 
-- **BSM (Basic Safety Message):** A standardized broadcast message containing vehicle position, size, speed, and heading. It is the primary data packet used in connected vehicle safety applications.
+- **CARMA Platform:** CARMA Platform provides the navigation and guidance functions for its host vehicle, as well as some of the control functions. It depends on low level controller hardware to provide the rest of the control function. The current version of CARMA Platform provides SAE level 3+ autonomy, with both speed and steering control.
+- **BSM (Basic Safety Message):** A standardized broadcast message containing vehicle position, size, speed, and heading.
 - **V2X:** Vehicle to Everything. A communication framework that allows vehicles to share information with other vehicles, roadside infrastructure, and pedestrians.
-- **SAE J2735:** The industry standard that defines the specific format and data dictionary for V2X messages like the Basic Safety Message.
+- **SAE J2735:** The industry standard that defines the specific format and data dictionary for V2X messages.
 - **ID Rotation:** A privacy feature that periodically changes the unique identifier of the vehicle in broadcast messages. This prevents external observers from identifying or tracking a specific vehicle over a long duration.
 - **SecMark:** A timestamp used in Basic Safety Messages that represents the current millisecond within the minute.
 - **Lifecycle Node:** A software node that utilizes a state machine to provide greater control over the startup and shutdown sequences of the software.

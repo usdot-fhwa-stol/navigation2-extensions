@@ -2,15 +2,15 @@
 
 ## Introduction
 
-The `navigation2_extensions` repository integrates Cooperative Driving Automation (CDA) functionality with the open source Navigation 2 Automated Driving System platform. Along with the core components of Navigation 2, this repository relies on the `nav2_route` package for defining road networks used by the vehicle.
+This repository adds custom Cooperative Driving Automation (CDA) functionality to the open source Navigation 2 library.
 
-This release targets automated port drayage where a semi truck communicates with an infrastructure computer within a port to coordinate the pickup and drop off of cargo. Additionally, an emergency stop feature has been added to stop the vehicle via remote input if necessary.
+This release targets automated port drayage where a semi truck communicates with an infrastructure computer within a port to coordinate the pickup and drop off of cargo.
 
-If you are new to these concepts, please review the [Key Terms](https://t3.chat/chat/28e1572d-0d00-4856-b695-66bdfaa548cc#key-terms) section at the bottom of this document.
+If you are new to this project or concepts, please review the [Key Terms](#key-terms) section at the bottom of this document.
 
 ## Prerequisites and Setup
 
-Because this repository contains custom extensions, it must be downloaded and built within your primary workspace alongside the core Navigation 2 packages.
+You must download and build this repository within your primary workspace alongside the core Navigation 2 packages.
 
 1. Clone this repository into the source directory of your workspace.
 2. Download the navigation2 [nav_route_server](https://github.com/usdot-fhwa-stol/navigation2/tree/nav2_route_server) branch and build `nav2_route` package, as this extension relies heavily on it for routing along defined road networks.
@@ -23,11 +23,13 @@ The plugins and features in this repository are not typically launched on their 
 To use these extensions, ensure your parameters are pointing to the custom plugins provided in this package, and launch the vehicle using the standard commands found in the [`cda1tenth_bringup`](https://github.com/usdot-fhwa-stol/cda1tenth-bringup/tree/develop) repository. Instructions for building a physical can be found at [`cda1tenth_hardware`](https://github.com/usdot-fhwa-stol/cda1tenth-hardware/tree/develop).
 
 ## Key Terms
-
-- **Automated Driving System:** The hardware and software collectively capable of performing the entire dynamic driving task on a sustained basis.
 - **Cooperative Driving Automation:** Research focused on how automated vehicles can communicate with each other and infrastructure to improve safety and traffic flow.
-- **Docker:** A platform that uses containerization to package software and its dependencies together so it runs reliably across different computing environments. [Learn more about Docker here](https://www.docker.com/).
 - **Port Drayage:** The transport of goods over a short distance, typically moving shipping containers between a port and a nearby logistical facility.
+- **Navigation2 (Nav2):** A navigation stack for mobile robots built on the ROS framework, [Nav2 Github](https://github.com/ros-navigation/navigation2).
+- **Route Server:** A custom module that plans routes along well structured graphs like road networks, rather than through open space.
+- **ROS 2:** Robot Operating System. The underlying framework that allows all the different parts of the vehicle to communicate.
+- **Docker:** A platform that uses containerization to package software and its dependencies together so it runs reliably across different computing environments. [Learn more about Docker here](https://www.docker.com/).
+
 
 ## Contribution
 

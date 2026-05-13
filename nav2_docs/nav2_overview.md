@@ -1,6 +1,6 @@
 ## Introduction
 
-This repository provides extensions and custom additions to the Navigation 2 framework for the CDA 1Tenth project. Navigation 2 is a motion planning and behavior planning framework for ROS 2. Because Navigation 2 is a complex system with several moving parts, this document provides an architectural overview to supplement the official documentation. If you are new to these concepts, please review the [Key Terms](https://t3.chat/chat/28e1572d-0d00-4856-b695-66bdfaa548cc#key-terms) section at the bottom of this document.
+This repository provides extensions and custom additions to the Navigation 2 framework for the CDA 1Tenth project. Navigation 2 is a motion planning and behavior planning framework for ROS 2. Because Navigation 2 is a complex system with several moving parts, this document provides an architectural overview to supplement the official documentation. If you are new to these concepts, please review the [Key Terms](#key-terms) section at the bottom of this document.
 
 ## How It Works
 
