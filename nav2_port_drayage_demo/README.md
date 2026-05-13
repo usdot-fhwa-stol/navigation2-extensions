@@ -60,9 +60,32 @@ strategy: 'carma/port_drayage'
 strategy_params: '{\"cmv_id\":\"turtlebot\",\"operation\":\"PICKUP\",\"cargo\":false,\"cargo_id\":\"CARGO_A\",\"destination\":{\"longitude\":3.8,\"latitude\":0.5},\"action_id\":\"PORT_DRAYAGE\"}'"
 ```
 
+## Physical Vehicles Launch Instructions
+
+To run the Port Drayage demo using the Turtlebot in the Gazebo simulator, first follow the cda1tenth-bringup repository physical vehicle instrucitons to download and build the necessary software.
+
+Then, download and run the simulation environment using:
+```bash
+sudo apt install ros-humble-turtlebot3*
+ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
+```
+
+To launch the Port Drayage demo, run
+```bash
+ros2 launch cda1tenth_bringup cda1tenth_bringup_launch.xml vehicle:=turtlebot
+```
+
+Next, provide the Turtlebot with an initial pose estimate using the 2D Pose Estimate arrow in Rviz. Once the vehicle has localized, it is now ready to receive a Mobility Operation message to determine an action to complete. To start a simple demonstration of the Turtlebot picking up and dropping off cargo, run:
+```bash
+cd nav2_port_drayage_demo/
+./test/turtlebot_port_drayage_test.sh
+```
+
+This will publish a series of Mobility Operation messages on /incoming_mobility_operation that instruct the Turtlebot to navigate to the top of the map to pickup cargo and then subsequently navigate to the bottom of the map to drop it off. After each successful operation, a Mobility Operation message acknowledging the Turtlebot completed the desired action will be published on /outgoing_mobility_operation.
+
 ## Simulation Launch Instructions
 
-Assuming you have installed and setup the cda1tenth-brinup repository the below commands will launch it.
+Assuming you have installed and setup the simulation in cda1tenth-brinup repository the below commands will launch it.
 
 ```bash
 chmod +x launch.sh
