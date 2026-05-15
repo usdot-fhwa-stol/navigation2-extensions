@@ -88,8 +88,6 @@ This will publish a series of Mobility Operation messages on /incoming_mobility_
 Assuming you have installed and setup the simulation in cda1tenth-brinup repository the below commands will launch it.
 
 ```bash
-chmod +x launch.sh
-
 # This should auto-detect your env settings
 ./launch.sh
 
