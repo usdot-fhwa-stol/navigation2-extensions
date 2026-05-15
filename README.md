@@ -2,9 +2,7 @@
 
 ## Introduction
 
-This repository adds custom Cooperative Driving Automation (CDA) functionality to the open source Navigation 2 library.
-
-This release targets automated port drayage where a semi truck communicates with an infrastructure computer within a port to coordinate the pickup and drop off of cargo.
+This repository adds custom Cooperative Driving Automation (CDA) functionality to the open source Navigation2 (Nav2) library, [Nav2 Github](https://github.com/ros-navigation/navigation2).
 
 If you are new to this project or concepts, please review the [Key Terms](#key-terms) section at the bottom of this document.
 
@@ -16,19 +14,19 @@ You must download and build this repository within your primary workspace alongs
 2. Download the navigation2 [nav_route_server](https://github.com/usdot-fhwa-stol/navigation2/tree/nav2_route_server) branch and build `nav2_route` package, as this extension relies heavily on it for routing along defined road networks.
 3. Build your workspace and source the setup file to ensure your system recognizes the new plugins and nodes.
 
-## Related Repositories:
+## Related Repositories
 
 The plugins and features in this repository are not typically launched on their own. Instead, they are loaded automatically by the Navigation 2 system when specified in your configuration files.
 
 To use these extensions, ensure your parameters are pointing to the custom plugins provided in this package, and launch the vehicle using the standard commands found in the [`cda1tenth_bringup`](https://github.com/usdot-fhwa-stol/cda1tenth-bringup/tree/develop) repository. Instructions for building a physical can be found at [`cda1tenth_hardware`](https://github.com/usdot-fhwa-stol/cda1tenth-hardware/tree/develop).
 
 ## Key Terms
+
 - **Cooperative Driving Automation:** Research focused on how automated vehicles can communicate with each other and infrastructure to improve safety and traffic flow.
-- **Port Drayage:** The transport of goods over a short distance, typically moving shipping containers between a port and a nearby logistical facility.
-- **Navigation2 (Nav2):** A navigation stack for mobile robots built on the ROS framework, [Nav2 Github](https://github.com/ros-navigation/navigation2).
-- **Route Server:** A custom module that plans routes along well structured graphs like road networks, rather than through open space.
 - **ROS 2:** Robot Operating System. The underlying framework that allows all the different parts of the vehicle to communicate.
-- **Docker:** A platform that uses containerization to package software and its dependencies together so it runs reliably across different computing environments. [Learn more about Docker here](https://www.docker.com/).
+- **Navigation2 (Nav2):** A navigation stack for mobile robots built on the ROS framework.
+- **Route Server:** A custom module that plans routes along well structured graphs like road networks, rather than through open space.
+- **Port Drayage:** The transport of goods over a short distance, typically moving shipping containers between a port and a nearby logistical facility.
 
 
 ## Contribution

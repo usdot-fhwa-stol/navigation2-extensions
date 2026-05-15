@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This package provides two specific Action nodes that interface with the Route Server and allow the navigator to request and process routes.
+This package provides two specific Action nodes that interface with the Route Server and allow the navigator server to request and process routes. The navigator server emulates road networks with those routes. The road networks are defined as directed graphs and can be created based on a given map. 
 
 If you are new to these concepts, please review the [Key Terms](#key-terms) section at the bottom of this document.
 
