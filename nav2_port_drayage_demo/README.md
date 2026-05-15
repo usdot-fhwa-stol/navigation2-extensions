@@ -2,18 +2,18 @@
 
 ## Introduction
 
-This package integrates port drayage operations with a Navigation 2 autonomy stack. The software node listens for incoming port drayage messages, calculates a route, and sends the target path to the vehicle controller via an action call.
+This package integrates port drayage operations with a Nav2 system. The software node listens for incoming port drayage messages, calculates a route, and sends the target path to the vehicle controller via an action call.
 
 If you are new to these concepts, please review the [Key Terms](#key-terms) section at the bottom of this document.
 
 ## How It Works
 
-Based on the underlying source code, the node operates through a continuous communication and execution loop.
+The node operates through a continuous communication and execution loop.
 
 1. **Receive Instruction:** It listens for incoming instructions on the mobility operation topic.
-2. **Validate:** It verifies the message is intended for the specific vehicle by checking the configured commercial vehicle identification parameter. It will ignore messages intended for other vehicles.
-3. **Plan:** It extracts the destination coordinates from the message payload and requests a route to the destination from the Navigation 2 system.
-4. **Execute:** Once a path is generated, it sends the path to the Navigation 2 controller using a follow path action. This moves the physical or simulated vehicle.
+2. **Validate:** It verifies the message is intended for the specific vehicle by checking the configured commercial vehicle identification parameter.
+3. **Plan:** It extracts the destination coordinates from the message payload and requests a route to the destination from the Nav2 stack.
+4. **Execute:** Once a path is generated, it sends the path to the Nav2 controller using a follow path action. This moves the physical or simulated vehicle.
 5. **Confirm:** When the vehicle successfully reaches the destination, the node publishes an outgoing mobility operation message to confirm arrival and update its cargo status.
 
 ## Configuration
@@ -60,9 +60,32 @@ strategy: 'carma/port_drayage'
 strategy_params: '{\"cmv_id\":\"turtlebot\",\"operation\":\"PICKUP\",\"cargo\":false,\"cargo_id\":\"CARGO_A\",\"destination\":{\"longitude\":3.8,\"latitude\":0.5},\"action_id\":\"PORT_DRAYAGE\"}'"
 ```
 
+## Physical Vehicles Launch Instructions
+
+To run the Port Drayage demo using the Turtlebot in the Gazebo simulator, first follow the cda1tenth-bringup repository physical vehicle instrucitons to download and build the necessary software.
+
+Then, download and run the simulation environment using:
+```bash
+sudo apt install ros-humble-turtlebot3*
+ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
+```
+
+To launch the Port Drayage demo, run
+```bash
+ros2 launch cda1tenth_bringup cda1tenth_bringup_launch.xml vehicle:=turtlebot
+```
+
+Next, provide the Turtlebot with an initial pose estimate using the 2D Pose Estimate arrow in Rviz. Once the vehicle has localized, it is now ready to receive a Mobility Operation message to determine an action to complete. To start a simple demonstration of the Turtlebot picking up and dropping off cargo, run:
+```bash
+cd nav2_port_drayage_demo/
+./test/turtlebot_port_drayage_test.sh
+```
+
+This will publish a series of Mobility Operation messages on /incoming_mobility_operation that instruct the Turtlebot to navigate to the top of the map to pickup cargo and then subsequently navigate to the bottom of the map to drop it off. After each successful operation, a Mobility Operation message acknowledging the Turtlebot completed the desired action will be published on /outgoing_mobility_operation.
+
 ## Simulation Launch Instructions
 
-Assuming you have installed and setup the cda1tenth-brinup repository the below commands will launch it.
+Assuming you have installed and setup the simulation in cda1tenth-brinup repository the below commands will launch it.
 
 ```bash
 chmod +x launch.sh

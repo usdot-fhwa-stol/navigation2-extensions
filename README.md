@@ -16,9 +16,7 @@ You must download and build this repository within your primary workspace alongs
 
 ## Related Repositories
 
-The plugins and features in this repository are not typically launched on their own. Instead, they are loaded automatically by the Navigation 2 system when specified in your configuration files.
-
-To use these extensions, ensure your parameters are pointing to the custom plugins provided in this package, and launch the vehicle using the standard commands found in the [`cda1tenth_bringup`](https://github.com/usdot-fhwa-stol/cda1tenth-bringup/tree/develop) repository. Instructions for building a physical can be found at [`cda1tenth_hardware`](https://github.com/usdot-fhwa-stol/cda1tenth-hardware/tree/develop).
+The [`cda1tenth_bringup`](https://github.com/usdot-fhwa-stol/cda1tenth-bringup/tree/develop) repository utilizes navigation 2 extensions for CDA in simulated and real environments. Instructions for building a physical vehicle can be found at [`cda1tenth_hardware`](https://github.com/usdot-fhwa-stol/cda1tenth-hardware/tree/develop).
 
 ## Key Terms
 
@@ -27,7 +25,6 @@ To use these extensions, ensure your parameters are pointing to the custom plugi
 - **Navigation2 (Nav2):** A navigation stack for mobile robots built on the ROS framework.
 - **Route Server:** A custom module that plans routes along well structured graphs like road networks, rather than through open space.
 - **Port Drayage:** The transport of goods over a short distance, typically moving shipping containers between a port and a nearby logistical facility.
-
 
 ## Contribution
 
